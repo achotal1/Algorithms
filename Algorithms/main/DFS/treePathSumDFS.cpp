@@ -1,3 +1,4 @@
+
 /* 
 Binary tree path sum should be equal to sum given
 */
@@ -21,16 +22,16 @@ class TreeNode {
 class TreePathSum {
  public:
   static bool hasPath(TreeNode *root, int sum) {
-    TreeNode *tn = root;
-    if(tn == nullptr){
-      return false;
+    if(root == nullptr){
+        return false;
     }
-    if(tn->left == nullptr && tn->right == nullptr && tn->val == sum){
-      return true;
+    if(root->left == nullptr && root->right == nullptr){
+        if((sum - root->val) == 0)
+        return true;
+        else
+        return false;
     }
-   
-
-    return hasPath(tn->left,sum - tn->val ) || hasPath(tn->right, sum - tn->val);
+    return hasPath(root->left, sum - root->val) || hasPath(root->right, sum - root->val);
   }
 };
 

@@ -3,6 +3,7 @@ using namespace std;
 #include <iostream>
 #include <vector>
 #include <cmath>
+#include <string>
 class TreeNode {
  public:
   int val = 0;
@@ -25,27 +26,25 @@ class SumOfPathNumbers {
   }
  private:
   static void findPathRecursive(TreeNode *root, vector<int> &digits, int &sum){
-    if(root == nullptr){
-      return;
-    }
+    if(root == nullptr)
+    return;
     digits.push_back(root->val);
-    
     if(root->left == nullptr && root->right == nullptr){
-      sum += calculateSum(digits);
+        sum += calculateSum(digits);
     }
     else{
-      findPathRecursive(root->left, digits, sum);
-      findPathRecursive(root->right, digits, sum);
+        findPathRecursive(root->left, digits, sum);
+        findPathRecursive(root->right, digits, sum);
     }
     digits.pop_back();
 
   }
   static int calculateSum(vector<int> &digits){
     int sum = 0;
-    int i = 0;
-    for(auto it = digits.rbegin();it != digits.rend(); it++){
-      sum += pow(10,i) * (*it);
-      i++;
+    int i = digits.size() - 1;
+    for(auto &a : digits){
+        sum += pow(10, i) * a;
+        i--;
     }
     return sum;
   }
