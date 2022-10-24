@@ -7,8 +7,8 @@ class ListNode {
   int value = 0;
   ListNode *next;
 
-  ListNode(int value) {
-    this->value = value;
+  ListNode(int val) {
+    value = val;
     next = nullptr;
   }
 };
@@ -16,15 +16,14 @@ class ListNode {
 class ReverseLinkedList {
  public:
   static ListNode *reverse(ListNode *head) {
-    // TODO: Write your code here
-    ListNode *temp = nullptr;
-    ListNode *prev = nullptr;
     ListNode *curr = head;
+    ListNode *prev = nullptr;
+    ListNode *temp = nullptr;
     while(curr != nullptr){
-      temp = curr->next;
-      curr->next = prev;
-      prev = curr;
-      curr = temp;
+        temp = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = temp;
     }
     return prev;
   }
