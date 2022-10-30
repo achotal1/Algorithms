@@ -19,29 +19,27 @@ class LevelOrderTraversal {
  public:
   static vector<vector<int>> traverse(TreeNode *root) {
     vector<vector<int>> result;
-    queue<TreeNode *> q; 
+    queue<TreeNode *> q;
     if(root == nullptr){
-      return result;
+        return result;
     }
-
     q.push(root);
     while(!q.empty()){
-      int levelsize = q.size();
-      vector<int> res;
-      for(int i = 0; i<levelsize;i++){
-        TreeNode *tn = q.front();
-        res.push_back(tn->val);
-        q.pop();
-        if(tn->left != nullptr){
-          q.push(tn->left);
+        int size = q.size();
+        vector<int> vec;
+        for(int i = 0; i<size; i++){
+            TreeNode *tn = q.front();
+            q.pop();
+            vec.push_back(tn->val);
+            if(tn->left != nullptr){
+                q.push(tn->left);
+            }
+            if(tn->right != nullptr){
+                q.push(tn->right);
+            }
         }
-        if(tn->right != nullptr){
-          q.push(tn->right);
-        }
-      }
-      result.push_back(res);
+        result.push_back(vec);
     }
-
     return result;
   }
 };
