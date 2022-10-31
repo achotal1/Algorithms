@@ -53,4 +53,38 @@ int main() {
 	}
 	return 0;
 }
+-------------------------------------------------------------------------------------------
+// Play Piano
+#include <iostream>
+#include<string>
+using namespace std;
+string answer(string s){
+    int c = 0;
+    char store;
+    string ans;
+    for(int i = 0; i<s.length(); i++){
+        if(i%2 == 0){
+            store = s[i];
+        }
+        else{
+            if(s[i] == store){
+                ans = "no";
+                return "no";
+            }
+        }
+    }
+   
+    return "yes";
+}
+int main() {
+	int T(0);
+	cin>>T;
+	for(int i = 0; i<T; i++){
+	    string s;
+	    cin>>s;
+	    cout<<answer(s)<<'\n';
+	}
+	return 0;
+}
+
 
