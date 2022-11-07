@@ -20,4 +20,24 @@ class MinSizeSubArraySum {
     }
     return mini;
   }
+  static int MinSubArrayLen(int target, vector<int>& nums){
+    int sum = 0; int windowStart(0);
+    int mini = numeric_limits<int>::max();
+    int c = 0;
+    for(int windowEnd = 0; windowEnd < nums.size(); windowEnd++){
+        sum += nums[windowEnd];  
+        while(sum >= target && windowStart <= windowEnd){
+            if(sum == target){
+                mini = min(mini, windowEnd - windowStart + 1);
+                c = 1;
+            }
+            sum -= nums[windowStart];
+            windowStart++;
+        }
+    }
+    if(c==0){
+       return 0;
+    }
+    return mini;
+    }
 };
