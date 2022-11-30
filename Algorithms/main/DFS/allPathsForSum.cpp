@@ -19,25 +19,27 @@ class FindAllTreePaths {
  public:
   static vector<vector<int>> findPaths(TreeNode *root, int sum) {
     vector<vector<int>> allPaths;
-    vector<int> onePath;
-    findPathsRecursive(root, sum, onePath, allPaths);
-
+    vector<int> v;
+    // TODO: Write your code here
+    findPathsRecursive(v, allPaths, root, sum);
     return allPaths;
   }
- private: 
-  static void findPathsRecursive(TreeNode *root, int sum, vector<int> &onePath, vector<vector<int>> &allPaths){
+  static void findPathsRecursive(vector<int> &v, vector<vector<int>> &allPaths, TreeNode *root, int sum){
     if(root == nullptr){
       return;
     }
-    onePath.push_back(root->val);
-    if(root->val == sum && root->left == nullptr && root->right == nullptr){
-      allPaths.push_back(onePath);
+    sum -= root->val;
+    v.push_back(root->val);
+    if(root->left == nullptr && root->right == nullptr){
+      if(sum == 0)
+        allPaths.push_back(v);
     }
     else{
-      findPathsRecursive(root->left, sum - root->val, onePath, allPaths);
-      findPathsRecursive(root->right, sum - root->val, onePath, allPaths);
+      findPathsRecursive(v, allPaths, root->left, sum);
+      findPathsRecursive(v, allPaths, root->right, sum);   
     }
-    onePath.pop_back();
+    sum += root->val;
+    v.pop_back();
   }
 };
 
@@ -58,4 +60,3 @@ int main(int argc, char *argv[]) {
     cout << endl;
   }
 }
-
