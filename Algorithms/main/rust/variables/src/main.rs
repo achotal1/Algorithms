@@ -15,7 +15,30 @@ fn fibo(num: i32) -> i32{
 	else{
 		fibo(num - 1) + fibo(num - 2)
 	}
-	
+}
+#[derive(Debug)]
+enum States{
+	Alaska,
+	Alabama,
+	// --snip
+}
+enum Coin{
+	Penny,
+	Nickel,
+	Dime,
+	Quarter(States),
+}
+
+fn add_value(coin:Coin) -> i32{
+	match coin{
+		Coin::Penny => 1,
+		Coin::Nickel => 5,
+		Coin::Dime => 10,
+		Coin::Quarter(state) => {
+			println!("Coin is of state {:?}", state);
+			25
+		}
+	}
 }
 
 fn main() {
@@ -42,5 +65,8 @@ fn main() {
 
     // fibonacci
 
-    println!("{}",fibo(6));
+    //println!("{}",fibo(6));
+    // trying enums out
+    let coin_try = Coin::Quarter(States::Alabama);
+    add_value(coin_try);
 }
