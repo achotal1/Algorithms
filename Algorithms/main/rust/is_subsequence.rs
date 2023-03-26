@@ -10,4 +10,18 @@ impl Solution {
         true
 
     }
+    pub fn is_subsequence2(s: String, t: String) -> bool {
+        let mut s_char = s.chars().collect::<Vec<char>>();
+        let mut t_char = t.chars().collect::<Vec<_>>();
+        let mut ind = 0;
+        for (i, val) in t.chars().enumerate(){
+            if s_char[ind] == t_char[i]{
+                ind += 1;
+                if ind == s_char.len(){
+                    return true;
+                }
+            }
+        }
+        false
+    }
 }

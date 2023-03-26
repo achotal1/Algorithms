@@ -19,6 +19,8 @@ impl Solution {
             char_count += 1;
         }
         char_count
+	  // One liner
+	  // s.split_whitespace().next_back().unwrap().len() as i32
 
     }
 }
