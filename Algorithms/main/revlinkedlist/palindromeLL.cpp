@@ -58,6 +58,58 @@ class PalindromicLinkedList {
     return prev;
   }
 };
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    bool isPalindrome(ListNode* head) {
+        ListNode *slow = head;
+        ListNode *fast = head;
+        ListNode *prev = nullptr;
+        if(head == nullptr){
+            return true;
+        }
+        
+        while(fast != nullptr && fast->next != nullptr){
+            prev = slow;
+            fast = fast->next->next;
+            slow = slow->next;
+        }
+        if(prev == nullptr){
+            return true;
+        }
+        prev->next = nullptr;
+        ListNode *one = head;
+        ListNode *second = reverse(slow);
+        while(one != nullptr){
+            if(one->val != second->val)
+                return false;
+            one = one->next;
+            second = second->next;
+        }
+        return true;
+    }
+    ListNode *reverse(ListNode *head){
+        ListNode *prev = nullptr;
+        ListNode *temp = nullptr;
+        ListNode *curr = head;
+        while(curr != nullptr){
+            temp = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = temp;
+        }
+        return prev;
+    }
+};
 
 
 int main(int argc, char *argv[]) {
