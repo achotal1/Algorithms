@@ -40,7 +40,6 @@ public:
         return prev;
     }
     void merge(ListNode *one, ListNode *two){
-        ListNode *trav = one;
 
         while(one != nullptr){
             ListNode *first = one->next;
