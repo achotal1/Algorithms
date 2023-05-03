@@ -20,4 +20,21 @@ class PairWithTargetSum {
     }
     return make_pair(-1, -1);
   }
-};
+}
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map<int,int> map;
+        int sec = 0;
+        for(int i = 0; i< nums.size(); i++){
+            sec = target - nums[i];
+            if(map.find(sec) != map.end()){
+                return { map[sec], i};
+            }
+            else{
+                map[nums[i]] = i;
+            }
+        }
+        return {-1 , -1};
+    }
+};;
