@@ -20,3 +20,23 @@ public:
     }
     
 };
+
+class Solution {
+public:
+    vector<int> countBits(int n) {
+        vector<int> res;
+        int c(0);
+        while(n>=0){
+            int m = n;
+            c = 0;
+            while(m){
+                m &= (m-1);
+                c++;
+            }
+            res.push_back(c);
+            n -= 1;
+        }
+        reverse(res.begin(), res.end());
+        return res;
+    }
+};
