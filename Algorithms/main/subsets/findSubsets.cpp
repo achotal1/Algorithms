@@ -33,6 +33,24 @@ class Subsets {
     }
     return subsets;
   }
+  vector<vector<int>> subsets(vector<int>& nums) {
+        vector<vector<int>> res;
+        vector<int> sub;
+        subsetsRecurse(res, 0, nums, sub);
+        return res;
+    }
+    void subsetsRecurse(vector<vector<int>> &res,int i, vector<int> nums, vector<int>& sub){
+        if(i >= nums.size()){
+            res.push_back(sub);
+            return;
+        }
+        
+        sub.push_back(nums[i]);
+        subsetsRecurse(res, i+1 , nums, sub);
+        sub.pop_back();
+        subsetsRecurse(res, i+1, nums, sub);
+        
+    }
 };
 
 int main(int argc, char* argv[]) {
