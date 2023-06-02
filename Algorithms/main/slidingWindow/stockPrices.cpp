@@ -20,3 +20,18 @@ int MaxProfit(vector<int> stockPrices)
     }
     return maxProfit;
 }
+
+class Solution {
+public:
+    int maxProfit(vector<int>& nums) {
+        int windowStart = 0;
+        int mx = 0;
+        for(int windowEnd = 0; windowEnd < nums.size(); windowEnd++){
+            mx = max(nums[windowEnd] - nums[windowStart], mx);
+            if(nums[windowEnd] < nums[windowStart]){
+                windowStart = windowEnd;
+            }
+        }
+        return mx < 0 ? 0 : mx;
+    }
+};
