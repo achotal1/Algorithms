@@ -17,3 +17,24 @@ std::string duplicate_encoder(const std::string& word){
   }
   return ans;
 }
+
+#include <vector>
+using namespace std;
+
+int find_even_index (const vector <int> numbers) {
+  int total_sum = 0;
+  for(auto i: numbers){
+    total_sum += i;
+  }
+  int leftsum = 0;
+  int rightsum = 0;
+  for(int i = 0; i<numbers.size(); i++){
+    total_sum -= numbers[i];
+    if(leftsum == total_sum){
+      return i;
+    }
+    leftsum += numbers[i];
+  }
+  return -1;
+  
+}
