@@ -12,25 +12,37 @@
 class Solution {
 public:
     bool isSubtree(TreeNode* root, TreeNode* subRoot) {
-        if(root == nullptr) return false;
-        if(isSameTree(root, subRoot)){
+        if(!root && !subRoot){
             return true;
         }
-        bool left = isSubtree(root->left, subRoot);
-        bool right = isSubtree(root->right, subRoot);
-        return left|right;
-    }
-    bool isSameTree(TreeNode *root, TreeNode *subRoot){
-        if(root == nullptr && subRoot == nullptr){
-            return true;
-        }else if(root == nullptr || subRoot == nullptr){
+        else if(!root || !subRoot){
             return false;
         }
-        if(root->val == subRoot->val){
-            return isSameTree(root->left, subRoot->left) && 
-                   isSameTree(root->right, subRoot->right);
-        }else
-            return false;
 
+        if(root->val == subRoot->val){
+            if(checkSub(root, subRoot)){
+                return true;
+            }
+        }
+            
+        return isSubtree(root->left, subRoot) || isSubtree(root->right, subRoot);
+    }
+    bool checkSub(TreeNode* root,TreeNode* subRoot){
+        if(!root && !subRoot){
+            return true;
+        }
+        else if(!subRoot || !root){
+            return false;
+        }
+
+        if(root->val == subRoot->val){
+            bool a = checkSub(root->left, subRoot->left);
+            bool b =  checkSub(root->right, subRoot->right);
+            return a && b;
+        }else{
+            return false;
+        }
+
+        return true;
     }
 };
