@@ -54,3 +54,25 @@ class SortedArraySquares {
     return squares;
   }
 };
+
+easier program:
+
+class Solution {
+public:
+    vector<int> sortedSquares(vector<int>& nums) {
+        int p1(0), p2(nums.size()-1);
+        vector<int> ans(nums.size(), 0);
+        int count = nums.size()-1;
+        while(p1 <= p2){
+            if(pow(nums[p1], 2) > pow(nums[p2], 2)){
+                ans[count] = pow(nums[p1], 2);
+                p1++;
+            }else{
+                ans[count] = pow(nums[p2], 2);
+                p2--;
+            }
+            count--;
+        }
+        return ans;
+    }
+};
